@@ -1,28 +1,25 @@
-import {
-  FlexBox,
-  FlexBoxAlignItems,
-  FlexBoxDirection,
-  FlexBoxJustifyContent,
-  Link,
-  LinkDesign,
-  ShellBar
-} from '@ui5/webcomponents-react';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Login } from "./pages/Login";
+import { Home } from "./pages/Home";
+import { Details } from "./pages/Details";
+import Services from "./pages/Services";
+import { Signup } from "./pages/Signup";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
     <>
-      <ShellBar primaryTitle="UI5 Web Components for React Template" />
-      <FlexBox
-        style={{ width: '100%', height: '100vh' }}
-        direction={FlexBoxDirection.Column}
-        justifyContent={FlexBoxJustifyContent.Center}
-        alignItems={FlexBoxAlignItems.Center}
-      >
-        <Link href="https://sap.github.io/ui5-webcomponents-react/" target="_blank" design={LinkDesign.Emphasized}>
-          Getting Started with UI5 Web Component for React
-        </Link>
-      </FlexBox>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/details" element={<Details />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/" element={<Login />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
